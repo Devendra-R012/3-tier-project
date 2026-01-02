@@ -1,15 +1,6 @@
-# Local .terraform directories
-**/.terraform/*
-
-# Terraform state files
-*.tfstate
-*.tfstate.*
-
-# Terraform lock file
-.terraform.lock.hcl
-# documents
-*.do# Terraform
-.terraform/
+# Terraform (ignore everywhere)
+**/.terraform/
+**/.terraform.lock.hcl
 *.tfstate
 *.tfstate.backup
 terraform.tfstate.d/
@@ -17,3 +8,4 @@ terraform.tfstate.d/
 # OS / IDE
 .vscode/
 .DS_Store
+
