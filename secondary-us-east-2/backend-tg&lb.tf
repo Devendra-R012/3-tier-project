@@ -1,14 +1,16 @@
 resource "aws_lb_target_group" "back_end" {
-  name     = "backend-tg"
+  provider = aws.secondary
+  name     = "backend-tg-us-east-2"
   port     = 80
   protocol = "HTTP"
   vpc_id   = aws_vpc.three-tier.id
-  depends_on = [ aws_vpc.three-tier ]
+  
 
 }
 
 resource "aws_lb" "back_end" {
-  name               = "backend-alb"
+  provider = aws.secondary
+  name               = "backend-alb-us-east-2"
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.alb-backend-sg.id]
@@ -20,6 +22,7 @@ resource "aws_lb" "back_end" {
 }
 
 resource "aws_lb_listener" "back_end" {
+  provider = aws.secondary
   load_balancer_arn = aws_lb.back_end.arn
   port              = "80"
   protocol          = "HTTP"

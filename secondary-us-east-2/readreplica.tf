@@ -1,10 +1,11 @@
 
 data "aws_db_instance" "example" {
-    provider = aws.secondary
+    provider = aws
   db_instance_identifier = "book-rds"
 }
 
 resource "aws_db_instance" "replica-mysql-rds" {
+  provider = aws.secondary
   identifier = "book-rds-read-replica"
   instance_class       = "db.t3.micro"
   skip_final_snapshot  = true

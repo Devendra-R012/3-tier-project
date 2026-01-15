@@ -1,6 +1,6 @@
 variable "ami" {
     type = string
-    default = "ami-0e6a50b0059fd2cc3"
+    default = "ami-0f5fcdfbd140e4ab7"
 
   
 }
@@ -11,7 +11,7 @@ variable "type" {
 }
 variable "key_name" {
     type = string
-    default = "task"
+    default = "task-1"
   
 }
 

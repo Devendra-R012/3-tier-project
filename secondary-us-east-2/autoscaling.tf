@@ -1,10 +1,11 @@
 # Autoscaling Group Resource
 resource "aws_autoscaling_group" "frontend-asg" {
+  provider = aws.secondary
   name_prefix = "frontend-asg"
   desired_capacity   = 1
   max_size           = 1
   min_size           = 1
-  vpc_zone_identifier = [aws_subnet.prvt3.id, aws_subnet.prvt4.id]
+  vpc_zone_identifier = [aws_subnet.pub1.id, aws_subnet.pub2.id]
   target_group_arns = [aws_lb_target_group.front_end.arn]
   
   health_check_type = "EC2"
@@ -33,11 +34,12 @@ resource "aws_autoscaling_group" "frontend-asg" {
 #####################################################################
 # Autoscaling Group Resource
 resource "aws_autoscaling_group" "backend-asg" {
+  provider = aws.secondary
   name_prefix = "backend-asg"
   desired_capacity   = 1
   max_size           = 1
   min_size           = 1
-  vpc_zone_identifier = [aws_subnet.prvt5.id, aws_subnet.prvt6.id]
+  vpc_zone_identifier = [aws_subnet.prvt3.id, aws_subnet.prvt4.id]
   target_group_arns = [aws_lb_target_group.back_end.arn]
   health_check_type = "EC2"
   #health_check_grace_period = 300 # default is 300 seconds  

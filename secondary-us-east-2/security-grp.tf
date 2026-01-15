@@ -1,6 +1,7 @@
 # Create a sgs
 
 resource "aws_security_group" "bastion-host" {
+  provider = aws.secondary
   name        = "appserver-SG"
   description = "Allow inbound traffic from ALB"
   vpc_id      = aws_vpc.three-tier.id
@@ -30,6 +31,7 @@ resource "aws_security_group" "bastion-host" {
 #  alb-frontend-sg
 
 resource "aws_security_group" "alb-frontend-sg" {
+  provider = aws.secondary
   name        = "alb-frontend-sg"
   description = "Allow inbound traffic from ALB"
   vpc_id      = aws_vpc.three-tier.id
@@ -67,6 +69,7 @@ resource "aws_security_group" "alb-frontend-sg" {
 #  alb-backend-sg
 
 resource "aws_security_group" "alb-backend-sg" {
+  provider = aws.secondary
   name        = "alb-backend-sg"
   description = "Allow inbound traffic ALB"
   vpc_id      = aws_vpc.three-tier.id
@@ -102,6 +105,7 @@ resource "aws_security_group" "alb-backend-sg" {
 
 # frontend server sg
 resource "aws_security_group" "frontend-server-sg" {
+  provider = aws.secondary
   name        = "frontend-server-sg"
   description = "Allow inbound traffic "
   vpc_id      = aws_vpc.three-tier.id
@@ -140,6 +144,7 @@ resource "aws_security_group" "frontend-server-sg" {
 #  backend-server-sg
 
 resource "aws_security_group" "backend-server-sg" {
+  provider = aws.secondary
   name        = "backend-server-sg"
   description = "Allow inbound traffic"
   vpc_id      = aws_vpc.three-tier.id
@@ -175,6 +180,7 @@ resource "aws_security_group" "backend-server-sg" {
 
 # database security group
 resource "aws_security_group" "book-rds-sg" {
+  provider = aws.secondary
   name        = "book-rds-sg"
   description = "Allow inbound "
   vpc_id      = aws_vpc.three-tier.id

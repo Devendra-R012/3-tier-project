@@ -1,5 +1,6 @@
 resource "aws_lb_target_group" "front_end" {
-  name     = "frontend-tg"
+  provider = aws.secondary
+  name     = "frontend-tg-us-east-2"
   port     = 80
   protocol = "HTTP"
   vpc_id   = aws_vpc.three-tier.id
@@ -8,7 +9,8 @@ resource "aws_lb_target_group" "front_end" {
 }
 
 resource "aws_lb" "front_end" {
-  name               = "frontend-alb"
+  provider = aws.secondary
+  name               = "frontend-alb-us-east-2"
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.alb-frontend-sg.id]
@@ -21,6 +23,7 @@ resource "aws_lb" "front_end" {
 }
 
 resource "aws_lb_listener" "front_end" {
+  provider = aws.secondary
   load_balancer_arn = aws_lb.front_end.arn
   port              = "80"
   protocol          = "HTTP"
